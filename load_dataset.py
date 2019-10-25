@@ -40,11 +40,12 @@ def load_test_data(phone, dped_dir, IMAGE_SIZE):
             I = np.float16(np.reshape(I, [1, IMAGE_SIZE])) / 255
             test_answ[i, :] = I
 
-            if i % 100 == 0:
+            if i % 10 == 0:
                 print(str(round(i * 100 / NUM_TEST_IMAGES)) + "% done", end="\r")
 
             i += 1
-        except:
+        except Exception as e:
+            print(str(e))
             continue
     return test_data, test_answ
 
@@ -94,9 +95,10 @@ def load_batch(phone, dped_dir, TRAIN_SIZE, IMAGE_SIZE):
             train_answ[i, :] = I
 
             i += 1
-            if i % 100 == 0:
+            if i % 10 == 0:
                 print(str(round(i * 100 / TRAIN_SIZE)) + "% done", end="\r")
-        except:
+        except Exception as e:
+            print(str(e))
             continue
 
     return train_data, train_answ
