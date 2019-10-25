@@ -205,8 +205,10 @@ with tf.Graph().as_default(), tf.Session() as sess:
                   (train_loss_gen, test_losses_gen[0][0], test_losses_gen[0][1], test_losses_gen[0][2],
                    test_losses_gen[0][3], test_losses_gen[0][4], test_losses_gen[0][5], loss_ssim)
 
-            print(logs_disc)
-            print(logs_gen)
+            # print(logs_disc)
+            # print(logs_gen)
+            utils.Log.LOG(logs_disc, 'i')
+            utils.Log.LOG(logs_gen, 'i')
 
             # save the results to log file
 

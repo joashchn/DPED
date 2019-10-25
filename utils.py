@@ -5,6 +5,38 @@ import sys
 
 from functools import reduce
 
+import logging
+
+
+class Log:
+    def __init__(self, out):
+        # filename 指定日志存放文件，level 指定logging级别
+
+        self.logger = logging.getLogger("logger")
+
+        self.handler_c = logging.StreamHandler()
+        self.handler_w = logging.FileHandler(filename=out + ".log")
+
+        self.logger.setLevel(logging.DEBUG)
+        self.handler_c.setLevel(logging.DEBUG)
+        self.handler_w.setLevel(logging.INFO)
+
+        self.formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+        self.handler_c.setFormatter(self.formatter)
+        self.handler_w.setFormatter(self.formatter)
+
+        self.logger.addHandler(self.handler_c)
+        self.logger.addHandler(self.handler_w)
+
+    def LOG(self, content, type):
+
+        if type == 'd':
+            self.logger.debug(content)
+        elif type == 'i':
+            self.logger.info(content)
+        elif type == 'e':
+            self.logger.error(content)
+
 def log10(x):
   numerator = tf.log(x)
   denominator = tf.log(tf.constant(10, dtype=numerator.dtype))
