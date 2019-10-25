@@ -32,15 +32,15 @@ def load_test_data(phone, dped_dir, IMAGE_SIZE):
     for files in os.listdir(test_directory_phone):
         try:
             # print(test_directory_phone + files)
-            I = np.asarray(misc.imread(test_directory_phone + files + '.jpg'))
+            I = np.asarray(misc.imread(test_directory_phone + files))
             I = np.float16(np.reshape(I, [1, IMAGE_SIZE])) / 255
             test_data[i, :] = I
 
-            I = np.asarray(misc.imread(test_directory_dslr + files + '.jpg'))
+            I = np.asarray(misc.imread(test_directory_dslr + files))
             I = np.float16(np.reshape(I, [1, IMAGE_SIZE])) / 255
             test_answ[i, :] = I
 
-            if i % 10 == 0:
+            if i % 100 == 0:
                 print(str(round(i * 100 / NUM_TEST_IMAGES)) + "% done", end="\r")
 
             i += 1
@@ -86,16 +86,16 @@ def load_batch(phone, dped_dir, TRAIN_SIZE, IMAGE_SIZE):
     for files in os.listdir(train_directory_phone):
 
         try:
-            I = np.asarray(misc.imread(train_directory_phone + files + '.jpg'))
+            I = np.asarray(misc.imread(train_directory_phone + files))
             I = np.float16(np.reshape(I, [1, IMAGE_SIZE])) / 255
             train_data[i, :] = I
 
-            I = np.asarray(misc.imread(train_directory_dslr + files + '.jpg'))
+            I = np.asarray(misc.imread(train_directory_dslr + files))
             I = np.float16(np.reshape(I, [1, IMAGE_SIZE])) / 255
             train_answ[i, :] = I
 
             i += 1
-            if i % 10 == 0:
+            if i % 100 == 0:
                 print(str(round(i * 100 / TRAIN_SIZE)) + "% done", end="\r")
         except Exception as e:
             print(str(e))
