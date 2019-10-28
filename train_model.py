@@ -130,8 +130,7 @@ with tf.Graph().as_default(), tf.Session() as sess:
     saver = tf.train.Saver(var_list=generator_vars, max_to_keep=100)
     ckpt = tf.train.get_checkpoint_state('models/')
     if ckpt and ckpt.model_checkpoint_path:
-        print(ckpt.model_checkpoint_path)
-        print('restore model')
+        print('restore model:', ckpt.model_checkpoint_path)
         saver.restore(sess, ckpt.model_checkpoint_path)
 
     print('Training network')
@@ -145,7 +144,7 @@ with tf.Graph().as_default(), tf.Session() as sess:
     logs = open('models/' + phone + '.txt', "w+")
     logs.close()
 
-    for i in range(num_train_iters):
+    for i in range(int(ckpt.model_checkpoint_path.split('.').split('_')[-1]),num_train_iters):
 
         # train generator
 

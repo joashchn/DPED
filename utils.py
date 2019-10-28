@@ -68,7 +68,7 @@ def process_command_args(arguments):
     batch_size = 50
     train_size = 30000
     learning_rate = 5e-4
-    num_train_iters = 20000
+    num_train_iters = 200000
 
     w_content = 10
     w_color = 0.5
