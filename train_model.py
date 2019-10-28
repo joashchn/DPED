@@ -141,8 +141,8 @@ with tf.Graph().as_default(), tf.Session() as sess:
     all_zeros = np.reshape(np.zeros((batch_size, 1)), [batch_size, 1])
     test_crops = test_data[np.random.randint(0, TEST_SIZE, 5), :]
 
-    logs = open('models/' + phone + '.txt', "w+")
-    logs.close()
+    # logs = open('models/' + phone + '.txt', "a+")
+    # logs.close()
 
     for i in range(int(ckpt.model_checkpoint_path.split('.').split('_')[-1]),num_train_iters):
 
@@ -210,7 +210,7 @@ with tf.Graph().as_default(), tf.Session() as sess:
             print(logs_gen)
             # save the results to log file
 
-            logs = open('models/' + phone + '.txt', "a")
+            logs = open('models/' + phone + '.txt', "a+")
             logs.write(logs_disc)
             logs.write('\n')
             logs.write(logs_gen)
