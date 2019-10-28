@@ -124,13 +124,15 @@ with tf.Graph().as_default(), tf.Session() as sess:
     train_step_gen = tf.train.AdamOptimizer(learning_rate).minimize(loss_generator, var_list=generator_vars)
     train_step_disc = tf.train.AdamOptimizer(learning_rate).minimize(loss_discrim, var_list=discriminator_vars)
 
-    saver = tf.train.Saver(var_list=generator_vars, max_to_keep=100)
-    ckpt = tf.train.get_checkpoint_state('model/iphone_iteration.ckpt')
-    if ckpt and ckpt.model_checkpoint_path:
-        saver.restore(sess, ckpt.model_checkpoint_path)
-
     print('Initializing variables')
     sess.run(tf.global_variables_initializer())
+
+    saver = tf.train.Saver(var_list=generator_vars, max_to_keep=100)
+    ckpt = tf.train.get_checkpoint_state('models/')
+    if ckpt and ckpt.model_checkpoint_path:
+        print(ckpt.model_checkpoint_path)
+        print('restore model')
+        saver.restore(sess, ckpt.model_checkpoint_path)
 
     print('Training network')
 
