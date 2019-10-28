@@ -144,7 +144,7 @@ with tf.Graph().as_default(), tf.Session() as sess:
     # logs = open('models/' + phone + '.txt', "a+")
     # logs.close()
 
-    for i in range(int(ckpt.model_checkpoint_path.split('.').split('_')[-1]),num_train_iters):
+    for i in range(int(ckpt.model_checkpoint_path.split('.')[0].split('_')[-1]),num_train_iters):
 
         # train generator
 
